@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: godabot-app
+  labels:
+    app: godabot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: godabot
+  template:
+    metadata:
+      labels:
+        app: godabot
+    spec:
+      containers:
+      - name: godabot
+        image: europe-central2-docker.pkg.dev/godabot/godabot-dev-gcr/godabot:v0.0.5-bfcec15-linux-amd64
+        # TODO: add memory and cpu
+      imagePullSecrets:
+      - name: regcred
