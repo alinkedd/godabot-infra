@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrate-db-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: migrate-db-container
+          image: migration-image:latest
+          command: ["migrate", "run"]
+          volumeMounts:
+            - name: data-volume
+              mountPath: /data
+      restartPolicy: Never
+      volumes:
+        - name: data-volume
+          emptyDir: {}

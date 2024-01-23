@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: godabot-pod
+  labels:
+    app: godabot
+spec:
+  containers:
+    - name: godabot-container
+      image: europe-central2-docker.pkg.dev/godabot/godabot-dev-gcr/godabot:v0.0.5-bfcec15-linux-amd64
+      imagePullPolicy: Always
+  imagePullSecrets:
+    - name: regcred
